@@ -111,7 +111,7 @@ We need to be careful about nomenclature when we write code. R allows us to give
 
 We get an error here because `else` is a function in R. You also don't want to give names that might get confused with functions; i.e. you can assign a value to 'mean' but this could become confusing because mean is also a function.  
 ```{r}
-
+mean <-20
 ```
 
 What is the mean of 2+8+2? (Do the math in your head first). Does the following code match your prediction?
@@ -147,7 +147,9 @@ Why does this not work?
 
 3. Use the function `mean()` to calculate the mean top speed for the cars.
 ```{r}
-
+A<- 270
+B <- 268
+C<- 260
 ```
 
 ## Types of Data
