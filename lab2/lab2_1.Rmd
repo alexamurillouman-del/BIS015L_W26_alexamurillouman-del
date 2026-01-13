@@ -50,7 +50,7 @@ What is a path? A path is the location of a file or folder on your computer. It 
 In order to access the potential of R we need to assign values or other types of data to `objects`. There is a specific format that I want you to follow, so please pay close attention.  
 Assign a value to object 'x'. The '<-' symbol is read as 'gets'. In this case, x gets 42. Make sure that you are in the environment panel and you should see the value associated with 'x'. On a mac, you can push `option` and `-` to automatically generate the gets symbol.  
 ```{r}
-x <- 42 
+x <- 42
 ```
 
 To print the object to the screen, just type x.  
@@ -79,28 +79,28 @@ Once objects have been created, you can do things with them.
 
 Make two new objects, treatment and control. The value of treatment is 36 and the value of control is 38.
 ```{r}
-
+Treatment <- 36
+Control <- 38
 ```
 
 What is the sum of treatment and control?
 ```{r}
-
+36+38
 ```
 
 Here we make a new object `my_experiment` that is the sum of the treatment and control. Notice that I use `_` and not spaces. 
 ```{r}
-treatment <- 36
-Control <- 38 
+ my_experiment 
 ```
 
 We can also use the function sum to do the same thing. Notice that if I give a new object the same name as an existing object, the old one is replaced.
 ```{r}
-treatment+control
+
 ```
 
 To learn more about the sum function, use the help command `?`.
 ```{r}
-?sum
+'?'
 ```
 
 ## Nomenclature
@@ -111,12 +111,12 @@ We need to be careful about nomenclature when we write code. R allows us to give
 
 We get an error here because `else` is a function in R. You also don't want to give names that might get confused with functions; i.e. you can assign a value to 'mean' but this could become confusing because mean is also a function.  
 ```{r}
-mean <-20
+
 ```
 
 What is the mean of 2+8+2? (Do the math in your head first). Does the following code match your prediction?
 ```{r}
-
+2+8+2
 ```
 
 Order of operations applies, so we need to tell R exactly what we want.
@@ -137,7 +137,9 @@ Why does this not work?
 ## Practice
 1. Create three new objects, `venom_GT`, `chiron`, and `veyron`. These are the fastest cars in the world. Assign each car to its top speed. The venom_GT can go 270, chiron is 261, and veyron is 268. 
 ```{r}
-
+venom_GT <- 270
+chiron <- 261
+veyron <- 268
 ```
 
 2. Use arithmetic to calculate the mean top speed for the cars.
@@ -147,9 +149,7 @@ Why does this not work?
 
 3. Use the function `mean()` to calculate the mean top speed for the cars.
 ```{r}
-A<- 270
-B <- 268
-C<- 260
+
 ```
 
 ## Types of Data
