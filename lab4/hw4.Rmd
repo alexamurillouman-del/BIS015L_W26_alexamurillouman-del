@@ -1,7 +1,7 @@
 ---
 title: "Homework 4"
-author: "Your Name Here"
-date: "`r Sys.Date()`"
+author: "Ale Murillo Umanzor"
+date: "1/15/26"
 output:
   html_document: 
     theme: spacelab
@@ -20,11 +20,38 @@ For this homework, we will be using the `msleep` dataset from the `ggplot2` pack
 
 **1. Use a summary function of your choice to get an idea of the structure of the msleep data.**
 
+```{r}
+msleep <- msleep
+```
+
 **2. What are the names of the variables? To get a better idea of what the variables mean, you can use `?msleep`.**
+
+```{r}
+names(msleep)
+```
+
 
 **3. Make a plot that shows the number of mammals in each vore type. Which vore type is most represented in the data?**
 
-**4. What is the average length of time that each mammal sleeps?**
+```{r}
+ggplot(data=msleep,
+       mapping=aes(x=vore))+
+  geom_bar()
+```
+
+
+**4. What is the average length of time that mammals sleep?**
+
+```{r}
+names(msleep)
+```
+
+```{r}
+ggplot(data=msleep,
+       mapping=aes(x=))+
+  geom_bar()
+
+```
 
 **5. Use `summary()` to get a quick idea of the range of values for the variable `bodywt`.**
 
