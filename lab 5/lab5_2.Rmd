@@ -34,6 +34,7 @@ Unlike `select()`, `filter()` allows us to extract data that meet specific crite
 ```{r}
 glimpse(penguins)
 ```
+
 ```{r}
 filter(penguins, species=="Adelie")
 ```
@@ -153,8 +154,9 @@ penguins %>%
 penguins %>% 
   select(species, body_mass_g) %>% 
   filter(species=="Gentoo") %>%
-  slice_max(body_mass_g, n=1) #don't forget to specify the variable 
+  slice_max(body_mass_g, n=1) #don't forget to specify the variables
 ```
+
 ```{r}
 penguins %>% 
   select(species, body_mass_g) %>% 
