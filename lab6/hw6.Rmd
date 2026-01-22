@@ -1,7 +1,7 @@
 ---
 title: "Homework 6"
-author: "Your Name Here"
-date: "`r Sys.Date()`"
+author: "Ale Murillo Umanzor"
+date: "1/26/26"
 output:
   html_document: 
     theme: spacelab
@@ -23,17 +23,18 @@ Reference: Koerner SE, Poulsen JR, Blanchard EJ, Okouyi J, Clark CJ. Vertebrate 
 
 **1. Load `IvindoData_DryadVersion.csv` and store it as a new object called `gabon`.**
 ```{r}
-
+gabon <- read.csv("data/IvindoData_DryadVersion.csv")
 ```
 
 **2. Use one or more of the summary functions you have learned to get an idea of the structure of the data.**  
 ```{r}
-
+glimpse(gabon)
 ```
 
 **3. Clean the data as necessary following the conventions from lab 6.**
 ```{r}
-
+gabon <- gabon %>% 
+  clean_names()
 ```
 
 ```{r}
