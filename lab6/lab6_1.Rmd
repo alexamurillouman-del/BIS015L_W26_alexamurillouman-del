@@ -180,6 +180,7 @@ mammals %>%
   select(genus, species, newborn) %>% 
   arrange(newborn)
 ```
+
 ```{r}
 mammals %>% 
   select(genus, species, newborn) %>% 
