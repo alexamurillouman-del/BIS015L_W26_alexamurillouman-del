@@ -22,11 +22,8 @@ For this assignment, we will use data from a study on elephants and the effects 
 Reference: [Chiyo, Patrick I., Vincent Obanda, and David K. Korir. “Illegal tusk harvest and the decline of tusk size in the African elephant.” Ecology and Evolution 5, 22: 5216–5229 (2015)](https://doi.org/10.1002/ece3.1769). Data deposited at [Dryad Digital Repository](https://doi.org/10.5061/dryad.h6t7j).  
 
 **1. Before starting data analysis, read the abstract of the paper to get an idea of the questions being asked. In 2-3 sentences, describe what the study is testing and the variables involved.**  
-\ The study is testing the historical elephant harvests eliminated large tuskers among survivors  and whether elephants born thereafter had smaller tusks. The variables involved are  
-\
-\
-\
-\
+ The study is testing the historical elephant harvests eliminated large tuskers among survivors and whether elephants born thereafter had smaller tusks. The authors compare tusk size across different sampling periods with variables like age, sex, shoulder height, tusk length, and year of sample collection. 
+
 
 **2. Load `elephants.csv` and store it as a new object called `elephants`.**  
 
@@ -35,12 +32,12 @@ elephants<- read.csv("data/elephants.csv")
 ```
 
 **3. Clean the data by converting variable names to lowercase with no spaces or special characters.**  
-
 ```{r}
 glimpse(elephants)
 ```
+
 ```{r}
-elephants <- elephants %>% 
+elephants<- elephants %>% 
   clean_names()
 ```
 
@@ -51,13 +48,13 @@ glimpse(elephants)
 **4. Use one or more of the summary functions you have learned to get an idea of the structure of the data.**   
 
 ```{r}
-summary(elephants)
+str(elephants)
 ```
 
 **5. Use `mutate()` Change the variables `years_of_sample_collection`, `elephant_id`, and `sex` to factors. Be sure to store the output as a new dataframe and use it for the remaining questions.**  
 
 ```{r}
-elephants %>% 
+elephants<- elephants %>% 
   mutate(
     years_of_sample_collection= as.factor(years_of_sample_collection), 
          elephant_id= as.factor(elephant_id),
@@ -81,43 +78,75 @@ elephants %>%
 ```{r}
 elephants %>% 
   count(sex) %>% 
- ggplot(aes(x=sex, y=n))+
+ ggplot(aes(x=sex, y=n, fill=sex))+
   geom_col()
 ```
 
 **8. What is the mean, median, and standard deviation for age of males and females included in the study? Separate the results by year of sample collection. Does the sampling look even between years and sexes?**  
 ```{r}
+elephants %>% 
+ group_by(years_of_sample_collection,sex=="Males") %>% 
+  summarize(mean_age=mean(estimated_age_years, na.rm=T),
+            median_age=median(estimated_age_years, na.rm=T),
+            sd_age=sd(estimated_age_years, na.rm=T),
+            total=n())
+```
 
+```{r}
+elephants %>% 
+ group_by(years_of_sample_collection,sex=="Females") %>% 
+  summarize(mean_age=mean(estimated_age_years, na.rm=T),
+            median_age=median(estimated_age_years, na.rm=T),
+            sd_age=sd(estimated_age_years, na.rm=T),
+            total=n())
+```
+
+**9. Is age (independent variable) a positive predictor of tusk length (dependent variable)? Create a plot that shows the relationship between these variables and add a linear model fit line.**  
+
+```{r}
+elephants %>% 
+   ggplot(aes(x=estimated_age_years, y=tusk_length_in_cm)) +
+  geom_point()+
+  geom_smooth(method="lm", se=FALSE)
+```
+
+**10. Is shoulder height (independent variable) a positive predictor of tusk length (dependent variable)? Create a plot that shows the relationship between these variables and add a linear model fit line.**  
+
+```{r}
+elephants %>% 
+   ggplot(aes(x=shoulder_height_in_cm, y=tusk_length_in_cm)) +
+  geom_point()+
+  geom_smooth(method="lm", se=FALSE)
 ```
 
 
-**9. Is age (independent variable) a positive predictor of tusk length (dependent variable)? Create a plot that shows the relationship between these variables and add a linear model fit line.**  
-\
-\
-\
-\
-\
-
-**10. Is shoulder height (independent variable) a positive predictor of tusk length (dependent variable)? Create a plot that shows the relationship between these variables and add a linear model fit line.**  
-\
-\
-\
-\
-\
-
 **11. The authors argue that because poachers preferentially target elephants with large tusks, this has resulted in a decrease in average tusk length. Is this supported by the data? Show your code and calculations below.**  
-\
-\
-\
-\
-\
+
+```{r}
+elephants %>% 
+  group_by(years_of_sample_collection) %>% 
+  summarize(mean_length= mean(tusk_length_in_cm, na.rm=TRUE),
+  total=n())
+```
+
 
 **12. Male elephants reach effective sexual maturity at 25 years while females are sexually mature at 12 years. Make a new dataframe that extracts only the males and females at sexual maturity. Then, make a plot that shows the range of tusk length between the two sample periods for these mature elephants.**   
-\
-\
-\
-\
-\
+
+```{r}
+mature_elephants <- elephants %>% 
+  filter(
+    (sex == "m" & estimated_age_years >= 25) |
+    (sex == "f" & estimated_age_years >= 12))
+```
+
+```{r}
+mature_elephants %>% 
+  ggplot(aes(x = years_of_sample_collection, y = tusk_length_in_cm, fill = years_of_sample_collection)) +
+  geom_boxplot() +
+  labs(title = "Tusk Length of Sexually Mature Elephants by Sample Period",
+    x = "Years of Sample Collection", y = "Tusk Length (cm)")
+```
+
 
 ## Submit the Homework
 1. Save your work and knit the .rmd file.  
