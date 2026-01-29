@@ -121,9 +121,7 @@ anolis %>%
 **Question 11. (4 points) The plot above is compelling, but don't we expect larger lizards to have longer limbs? What about tail length? Shouldn't longer lizards have longer tails? To correct for this, make two new columns: 1. `ratio_of_hindlimb_body`, and 2. `ratio_of_tail_to_body`. Don't forget to add these columns to the anolis data frame.**
 
 ```{r}
-anolis<- anolis %>% 
-  select()
-filter(anolis, ratio_of_hindlimb_body,ratio_of_tail_to_body )
+
 ```
 
 
