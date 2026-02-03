@@ -78,7 +78,8 @@ fisheries_clean %>%
 ```{r}
 fisheries_clean %>% 
   filter(period=="2023") %>% 
-  group_by()
+  group_by(common_name) %>% 
+  summarize()
 ```
 
 8. For the species that was caught the most above (not NEI), which country had the highest catch in 2023?
