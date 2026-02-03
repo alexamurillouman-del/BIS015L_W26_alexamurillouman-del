@@ -1,7 +1,7 @@
 ---
 title: "Homework 8"
-author: "Your Name Here"
-date: "`r Sys.Date()`"
+author: "Ale Murillo Umanzor"
+date: "2/04/26"
 output:
   html_document: 
     theme: spacelab
@@ -15,7 +15,7 @@ Answer the following questions and/or complete the exercises in RMarkdown. Pleas
 ```{r message=FALSE, warning=FALSE}
 library("tidyverse")
 library("janitor")
-library("naniar")
+#library("naniar")
 options(scipen = 999)
 ```
 
@@ -29,37 +29,56 @@ fisheries_clean <- read_csv("data/fisheries_clean.csv")
 
 1. Explore the data. What are the names of the variables, what are the dimensions, are there any NA's, what are the classes of the variables, etc.? You may use the functions that you prefer.
 ```{r}
-
+names(fisheries_clean)
 ```
 
 2. Convert the following variables to factors: `period`, `continent`, `geo_region`, `country`, `scientific_name`, `common_name`, `taxonomic_code`, and `status`.
 ```{r}
-
+fisheries_clean <- fisheries_clean %>% 
+  mutate(period= as.factor(period),
+         continent= as.factor(continent),
+         geo_region= as.factor(geo_region),
+         country= as.factor(country),
+         scientific_name= as.factor(scientific_name),
+         common_name= as.factor(common_name),
+         taxonomic_code= as.factor(taxonomic_code),
+         status= as.factor(status)) %>% 
+  relocate(period, continent, geo_region, country, scientific_name, common_name, taxonomic_code, status)
 ```
 
-3. Are there any missing values in the data? If so, which variables contain missing values and how many are missing for each variable?
+##Are there any missing values in the data? If so, which variables contain missing values and how many are missing for each variable
 ```{r}
 
 ```
 
 4. How many countries are represented in the data?
 ```{r}
-
+fisheries_clean |> 
+  distinct(country)
 ```
 
 5. The variables `common_name` and `taxonomic_code` both refer to species. How many unique species are represented in the data based on each of these variables? Are the numbers the same or different?
 ```{r}
-
+fisheries_clean %>% 
+  group_by(common_name, taxonomic_code) %>% 
+  summarize(across(where(is.numeric),
+                   ~mean(.x, na.rm=T)))
 ```
 
 6. In 2023, what were the top five countries that had the highest overall catch?
 ```{r}
-
+fisheries_clean %>% 
+  filter(period=="2023") %>% 
+  group_by(country) %>% 
+  summarize(total_catch=sum(catch)) %>% 
+  arrange(desc(total_catch))
 ```
 
 7. In 2023, what were the top 10 most caught species? To keep things simple, assume `common_name` is sufficient to identify species. What does `NEI` stand for in some of the common names? How might this be concerning from a fisheries management perspective?
 ```{r}
-
+fisheries_clean %>% 
+  filter(period=="2023") %>% 
+  group_by()
 ```
 
 8. For the species that was caught the most above (not NEI), which country had the highest catch in 2023?
