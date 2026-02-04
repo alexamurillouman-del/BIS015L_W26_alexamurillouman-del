@@ -53,16 +53,14 @@ fisheries_clean <- fisheries_clean %>%
 
 4. How many countries are represented in the data?
 ```{r}
-fisheries_clean |> 
-  distinct(country)
+fisheries_clean %>% 
+  summarize(n_countries=n_distinct(country))
 ```
 
 5. The variables `common_name` and `taxonomic_code` both refer to species. How many unique species are represented in the data based on each of these variables? Are the numbers the same or different?
 ```{r}
 fisheries_clean %>% 
-  group_by(common_name, taxonomic_code) %>% 
-  summarize(across(where(is.numeric),
-                   ~mean(.x, na.rm=T)))
+  summarize(n_common_name= n_distinct(common_name), n_taxonomic_code= n_distinct (taxonomic_code)) 
 ```
 
 6. In 2023, what were the top five countries that had the highest overall catch?
@@ -75,25 +73,38 @@ fisheries_clean %>%
 ```
 
 7. In 2023, what were the top 10 most caught species? To keep things simple, assume `common_name` is sufficient to identify species. What does `NEI` stand for in some of the common names? How might this be concerning from a fisheries management perspective?
+NEI stands for 
 ```{r}
 fisheries_clean %>% 
   filter(period=="2023") %>% 
   group_by(common_name) %>% 
-  summarize()
+  summarize(total_catch= sum(catch)) %>% 
+   arrange(desc(total_catch))
 ```
 
 8. For the species that was caught the most above (not NEI), which country had the highest catch in 2023?
 ```{r}
-
+fisheries_clean %>% 
+  filter(period == "2023", common_name != "NEI") %>% 
+  group_by(common_name) %>% 
+  summarize(total_catch = sum(catch, na.rm = T)) %>% 
+  arrange(desc(total_catch)) 
 ```
 
 9. How has fishing of this species changed over the last decade (2013-2023)? Create a  plot showing total catch by year for this species.
 ```{r}
 
+
 ```
 
 10. Perform one exploratory analysis of your choice. Make sure to clearly state the question you are asking before writing any code.
+How does total catch differ by continent in 2023?
 ```{r}
+fisheries_clean %>% 
+  filter(period == "2023") %>% 
+  group_by(continent) %>% 
+  summarize(total_catch = sum(catch, na.rm = TRUE)) %>% 
+  arrange(desc(total_catch))
 
 ```
 
