@@ -1,7 +1,7 @@
 ---
 title: "Homework 10"
-author: "Key"
-date: "`r Sys.Date()`"
+author: "Ale Murillo Umanzor"
+date: "`2/12/26`"
 output:
   html_document:
     theme: spacelab
@@ -34,13 +34,19 @@ sharks <-
 ## Questions
 1. Are there any "hotspots" for shark incidents in California? Show the top five counties with the most incidents.
 ```{r}
-
+sharks %>% 
+ count(county, sort=T)
 ```
 
 2.  Make a plot that shows the total number of incidents per county.
 ```{r}
-
+sharks %>% 
+ count(county, sort=T)
+ ggplot(aes(x=county, y=n)) +
+  geom_col()
 ```
+
+
 
 3. Are there months of the year when incidents are more likely to occur? Make a plot that shows the total number of incidents by month. Which month has the highest number of incidents?  
 ```{r}
