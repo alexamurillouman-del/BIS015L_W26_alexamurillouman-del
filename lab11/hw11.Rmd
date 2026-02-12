@@ -1,7 +1,7 @@
 ---
 title: "Homework 11"
-author: "Your Name Here"
-date: "`r Sys.Date()`"
+author: "Ale Murillo Umanzor"
+date: "2/16/26"
 output:
   html_document:
     theme: spacelab
@@ -39,17 +39,20 @@ gapminder <- read_csv("data/gapminder.csv") %>%
 
 1. Use the function(s) of your choice to get an idea of the overall structure of the data, including its dimensions, column names, classes, etc. 
 ```{r}
-
+gapminder %>% 
+  summarize(gapminder)
 ```
 
 2. How many countries are represented in this dataset?
 ```{r}
-
+gapminder %>% 
+  count(country)
 ```
 
 3. Which five countries have had the largest absolute population growth between 1925-2025? Show this as a table.
 ```{r}
-
+gapminder %>% 
+  
 ```
 
 4. Make a plot that shows population growth over time for the top country you found in question #3.
