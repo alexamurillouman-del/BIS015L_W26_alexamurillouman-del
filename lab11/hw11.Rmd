@@ -39,8 +39,7 @@ gapminder <- read_csv("data/gapminder.csv") %>%
 
 1. Use the function(s) of your choice to get an idea of the overall structure of the data, including its dimensions, column names, classes, etc. 
 ```{r}
-gapminder %>% 
-  summarize(gapminder)
+glimpse(gapminder)
 ```
 
 2. How many countries are represented in this dataset?
@@ -57,8 +56,8 @@ gapminder %>%
   pivot_wider(names_from = year, values_from = pop, names_prefix = "pop_") %>% 
   drop_na(pop_1925, pop_2025) %>% 
   mutate(pop_growth = pop_2025 - pop_1925) %>% 
-  arrange(desc(pop_growth)) 
-  
+  arrange(desc(pop_growth)) %>% 
+  slice(1:5)
 ```
 
 4. Make a plot that shows population growth over time for the top country you found in question #3.
@@ -89,6 +88,7 @@ gapminder %>%
 ```
 
 6. Make a plot that shows the distribution of life expectancy for all countries in 1925 and 2025 (try using `geom_density`). What do you notice about the shift in life expectancy over time?
+Life expectancy in 2025 is much higher than in 1925, as shown by the distribution shifting to the right. This indicates that people around the world are generally living longer over time
 ```{r}
 gapminder %>% 
   filter(year %in% c(1925, 2025)) %>% 
@@ -123,14 +123,15 @@ gapminder %>%
   pivot_wider(names_from = year, values_from = gdp) %>% 
   drop_na(`1975`, `2025`) %>% 
   mutate(gdp_growth = `2025` - `1975`) %>% 
-  arrange(desc(gdp_growth))
+  arrange(desc(gdp_growth)) %>% 
+  slice(1:5)
 ```
 
 9. How does per capita GDP growth compare between these same five countries over the past 50 years? Show this as a plot.
 ```{r}
 gapminder %>% 
   filter(between(year, 1975, 2025),
-         country %in% c("India", "China", "Indonesia", "Pakistan", "USA")) %>% 
+         country %in% c("Singapore", "Ireland", "Luxembourg", "Guyana", "Norway")) %>% 
   ggplot(aes(x = year, y = gdp, color = country)) +
   geom_line() +
   geom_point() +
@@ -143,11 +144,13 @@ gapminder %>%
 ```
 
 10. Do one analysis of your choice that includes a table and plot as outputs.
+Which countries have the highest life expectancy in 2025?
 ```{r}
 gapminder %>% 
   filter(year == 2025) %>% 
   drop_na(lex) %>% 
   arrange(desc(lex)) %>% 
+  slice(1:10) %>% 
   select(country, lex, gdp, pop)
 ```
 
