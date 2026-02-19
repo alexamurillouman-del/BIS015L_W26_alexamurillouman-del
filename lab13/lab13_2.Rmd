@@ -69,17 +69,17 @@ full_join(table_A, table_B, by="customer_ID")
 `anti_join`
 Provides the rows in the first table for which there are not matching values in the second table.
 ```{r}
-
+anti_join(table_A, table_B, by="customer_ID") #use to troubleshoot prolematic joins
 ```
 
 ## Dates
 The `lubridate` package was created to deal with dates of all types. There are many useful functions in `lubridate`, most of which are designed to make working with dates easier. For example, you can easily get the current date and time with `today()` and `now()`.
 ```{r}
-
+today()
 ```
 
 ```{r}
-
+now()
 ```
 
 There are many different options for working with dates and date-times in lubridate including `ymd`, `mdy`, `dmy`, `mdy_hms`, `ymd_hms`. The formats below are common examples of how you might see dates in your data.
@@ -94,23 +94,23 @@ dateformat5 <- "20200922 170000"
 ## Converting dates 
 We can convert each of the examples above using lubridate.
 ```{r}
-
+ymd(dateformat1)
 ```
 
 ```{r}
-
+mdy(dateformat2)
 ```
 
 ```{r}
-
+dmy(dateformat3)
 ```
 
 ```{r}
-
+mdy_hms(dateformat4)
 ```
 
 ```{r}
-
+ymd_hms(dateformat5)
 ```
 
 ## Practice
@@ -118,11 +118,11 @@ For this practice, we will use data from my research on _Usofila_ spiders. These
 
 1. Load the two files as separate dataframes. Make sure to clean the column names.
 ```{r message=FALSE, warning=FALSE}
-
+spider_records <- read_csv("data/spider_records.csv")
 ```
 
 ```{r, message = FALSE}
-
+spiders_locations <- read_csv("data/spiders_locations.csv")
 ```
 
 2. Join the files using an appropriate key and join type.
