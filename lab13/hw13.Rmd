@@ -1,7 +1,7 @@
 ---
 title: "Homework 13"
-author: "Your Name Here"
-date: "`r Sys.Date()`"
+author: "Ale Murillo Umanzor"
+date: "2/20/26"
 output:
   html_document: 
     theme: spacelab
