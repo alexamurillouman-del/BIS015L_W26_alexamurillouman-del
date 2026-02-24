@@ -61,11 +61,15 @@ amniota_clean <- amniota_clean %>%
 ```
 
 5. Use `naniar` to visualize the number of NA's in each variable. Which variables have the most NA's?
+Reproductive traits such as egg mass have the most missing values. This likely reflects biological differences among taxonomic classes rather than data errors.
 ```{r}
-miss_var_summary(amniota_clean)
+amniota_clean %>%
+  gg_miss_var()
 ```
 
 6. Calculate the number of NAs in the `egg_mass_g` column sorted by taxonomic class; i.e. how many NA's are present in the `egg_mass_g` column in birds, mammals, and reptiles? Does this results make sense biologically? How do these results affect your interpretation of NA's?
+Mammals have the most NA values for egg_mass_g, while birds and reptiles have fewer. This makes biological sense because most mammals do not lay eggs, so egg mass is often not applicable or not measured.
+
 ```{r}
 amniota_clean %>%
   group_by(class) %>%
