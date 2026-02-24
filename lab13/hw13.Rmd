@@ -1,7 +1,7 @@
 ---
 title: "Homework 13"
 author: "Ale Murillo Umanzor"
-date: "2/20/26"
+date: "2/23/26"
 output:
   html_document: 
     theme: spacelab
@@ -33,27 +33,44 @@ glimpse(amniota)
 
 2. Make any necessary replacements in the data such that all NA's appear as "NA". 
 ```{r}
-
+amniota_clean <- read_csv("data/amniota.csv", 
+                          na = c("-999", "NA", "", "not measured")) %>% 
+  clean_names()
+```
+```{r}
+amniota_clean <- amniota_clean %>%
+  mutate(across(where(is.numeric), ~ na_if(.x, -999)))
 ```
 
 3. How many total NA's are in the data set? Use the package `naniar` to produce a summary, including percentages, of missing data in each column for the `amniota` data.
 ```{r}
+sum(is.na(amniota_clean))
+```
 
+```{r}
+miss_var_summary(amniota_clean)
 ```
 
 4. Double check your replacement using `summary`. Do you see any other potential issues? If so, fix them.
 ```{r}
-
+summary(amniota_clean)
+```
+```{r}
+amniota_clean <- amniota_clean %>%
+  mutate(egg_mass_g = na_if(egg_mass_g, 0))
 ```
 
 5. Use `naniar` to visualize the number of NA's in each variable. Which variables have the most NA's?
 ```{r}
-
+miss_var_summary(amniota_clean)
 ```
 
 6. Calculate the number of NAs in the `egg_mass_g` column sorted by taxonomic class; i.e. how many NA's are present in the `egg_mass_g` column in birds, mammals, and reptiles? Does this results make sense biologically? How do these results affect your interpretation of NA's?
 ```{r}
-
+amniota_clean %>%
+  group_by(class) %>%
+  summarize(n_miss_egg_mass_g = sum(is.na(egg_mass_g))) %>%
+  arrange(desc(n_miss_egg_mass_g))
 ```
 
 ## Knit and Upload
