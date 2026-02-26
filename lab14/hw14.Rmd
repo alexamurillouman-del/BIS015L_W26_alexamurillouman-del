@@ -1,7 +1,7 @@
 ---
 title: "Lab 14 Homework"
 author: "Ale Murillo Umanzor"
-date: "`2/25/26"
+date: "2/25/26"
 output:
   html_document:
     theme: spacelab
@@ -127,6 +127,15 @@ leaflet(sharks_fatal) %>%
 sharks %>%
   count(county, sort = TRUE)
 ```
+```{r}
+top_county <- sharks %>%
+  count(county, sort = TRUE) %>%
+  slice(1) %>%
+  pull(county)
+
+top_county
+```
+
 ```{r}
 sharks_top <- sharks %>%
   filter(county == top_county) 
