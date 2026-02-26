@@ -5742,7 +5742,7 @@ interactive using <code>leaflet</code>. Also, color the points red.</li>
   lat_min&lt;- 32.855
   lat_max&lt;-39.57833 </code></pre>
 <pre class="r"><code>leaflet(sharks_fatal) %&gt;% 
-  addProviderTiles(providers$OpenStreetMap) %&gt;% 
+  addProviderTiles(providers$Stadia.StamenTerrain) %&gt;% 
   addCircleMarkers(
     lng = ~longitude,
     lat= ~latitude,
@@ -5754,8 +5754,8 @@ interactive using <code>leaflet</code>. Also, color the points red.</li>
   addScaleBar(position=&quot;bottomleft&quot;) %&gt;% 
   fitBounds(lng1=lon_min, lat1=lat_min,
             lng2=lon_max, lat2=lat_max)</code></pre>
-<div class="leaflet html-widget html-fill-item" id="htmlwidget-0d4100ffa2d5472f3eef" style="width:672px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-0d4100ffa2d5472f3eef">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addProviderTiles","args":["OpenStreetMap",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]},{"method":"addCircleMarkers","args":[[36.62666667,35.40333333,37.7936,32.855,36.62666667,37.19166667,34.01833333,34.04,35.2,39.57833333,33,34.683,34.683,36.919966,35.40333333],[-122.05,-120.875,-122.4836,-117.28,-122.25,-122.5083333,-118.8833333,-120.7366667,-120.7,-123.7783333,-117.3,-120.71,-120.81,-121.8558,-121.175],2,null,null,{"interactive":true,"className":"","stroke":false,"color":"red","weight":5,"opacity":0.5,"fill":true,"fillColor":"red","fillOpacity":0.7},null,null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addScaleBar","args":[{"maxWidth":100,"metric":true,"imperial":true,"updateWhenIdle":true,"position":"bottomleft"}]}],"limits":{"lat":[32.855,39.57833333],"lng":[-123.7783333,-117.28]},"fitBounds":[32.855,-123.7783,39.57833,-117.28,[]]},"evals":[],"jsHooks":[]}</script>
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-060ecc3f92c584c9aaf3" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-060ecc3f92c584c9aaf3">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addProviderTiles","args":["Stadia.StamenTerrain",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]},{"method":"addCircleMarkers","args":[[36.62666667,35.40333333,37.7936,32.855,36.62666667,37.19166667,34.01833333,34.04,35.2,39.57833333,33,34.683,34.683,36.919966,35.40333333],[-122.05,-120.875,-122.4836,-117.28,-122.25,-122.5083333,-118.8833333,-120.7366667,-120.7,-123.7783333,-117.3,-120.71,-120.81,-121.8558,-121.175],2,null,null,{"interactive":true,"className":"","stroke":false,"color":"red","weight":5,"opacity":0.5,"fill":true,"fillColor":"red","fillOpacity":0.7},null,null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addScaleBar","args":[{"maxWidth":100,"metric":true,"imperial":true,"updateWhenIdle":true,"position":"bottomleft"}]}],"limits":{"lat":[32.855,39.57833333],"lng":[-123.7783333,-117.28]},"fitBounds":[32.855,-123.7783,39.57833,-117.28,[]]},"evals":[],"jsHooks":[]}</script>
 <ol start="6" style="list-style-type: decimal">
 <li>Which county has the highest number of recorded shark attacks? Make
 a map that only shows the attacks in this county. (hint: it may help

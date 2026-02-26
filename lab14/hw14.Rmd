@@ -113,7 +113,7 @@ lon_min<-	-123.7783
 
 ```{r, echo=T}
 leaflet(sharks_fatal) %>% 
-  addProviderTiles(providers$OpenStreetMap) %>% 
+  addProviderTiles(providers$Stadia.StamenTerrain) %>% 
   addCircleMarkers(
     lng = ~longitude,
     lat= ~latitude,
