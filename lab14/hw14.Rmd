@@ -41,6 +41,7 @@ sharks %>%
   select(latitude, longitude) %>%
   summary()
 ```
+
 ```{r}
 lat  <- c(32.59, 41.56)
 long <- c(-124.7, -117.1)
@@ -53,6 +54,7 @@ bbox <- make_bbox(long, lat, f = 0.05)
 ```{r}
 map1<- get_stadiamap(bbox, maptype = "stamen_terrain", zoom=7)
 ```
+
 ```{r}
 ggmap(map1)
 ```
@@ -69,9 +71,11 @@ ggmap(map1) +
 ```{r}
 names(sharks)
 ```
+
 ```{r}
 sharks %>% count(injury, sort = TRUE)
 ```
+
 ```{r}
 sharks_fatal <- sharks %>%
   filter(injury == "fatal")
@@ -99,6 +103,7 @@ sharks_fatal %>%
   lat_max=max(latitude, na.rm=T
   ))
 ```
+
 ```{r}
 lon_min<-	-123.7783	
   lon_max<-	-117.28	
@@ -106,9 +111,9 @@ lon_min<-	-123.7783
   lat_max<-39.57833	
 ```
 
-```{r}
+```{r, echo=T}
 leaflet(sharks_fatal) %>% 
-  addProviderTiles(providers$Stadia.StamenTerrain) %>% 
+  addProviderTiles(providers$OpenStreetMap) %>% 
   addCircleMarkers(
     lng = ~longitude,
     lat= ~latitude,
@@ -127,6 +132,7 @@ leaflet(sharks_fatal) %>%
 sharks %>%
   count(county, sort = TRUE)
 ```
+
 ```{r}
 top_county <- sharks %>%
   count(county, sort = TRUE) %>%
@@ -146,6 +152,7 @@ sharks_top %>%
   select(latitude, longitude) %>%
   summary()
 ```
+
 ```{r}
 lat  <- c(32.59, 33.37)
 long <- c(-118.1  , -117.1)
@@ -156,9 +163,11 @@ bbox <- make_bbox(long, lat, f = 0.05)
 ```{r}
 map1<- get_stadiamap(bbox, maptype = "stamen_terrain", zoom=10)
 ```
+
 ```{r}
 ggmap(map1)
 ```
+
 ```{r}
 ggmap(map1) +
   geom_point(data=sharks_top, aes(longitude, latitude), size=0.75, color="blue", alpha=0.8)+
