@@ -166,7 +166,7 @@ polar_bears %>%
 9. (8 points) Where are the polar bears used in this study located? Make a static (not leaflet) distribution map that shows the locations of  bears by population. (hint: use `color=popn` in the `aes()` of `geom_point()`)
 
 ```{r}
-polar_bears %>% 
+
   
 ```
 
