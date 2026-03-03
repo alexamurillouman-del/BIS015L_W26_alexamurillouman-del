@@ -79,14 +79,10 @@ summary(polar_bears)
 ```
 
 2. (3 points) How are NA's represented and where are they distributed in the variables? Use the `naniar` package to visualize the distribution of NA's in the data and replace any alternative representations of NA with actual NA values.
+#They are represented as Unknown's
 ```{r}
 glimpse(polar_bears)
 ```
-```{r}
-polar_bears %>% 
- 
-```
-
 
 3. (6 points) Is sampling even for both sexes? Make a count the shows the number of males and females sampled by population and make a plot to visualize the counts.
 ```{r}
@@ -140,8 +136,8 @@ summarize(min_creatinine=min(creatinine, na.rm=T),
 
 6. (3 points) As explained above, the ratio of `urea_nitrogen` to `creatinine` is used as an index of fasting. To calculate the ratio, we need to multiply `urea_nitrogen` by 0.466, then divide by `creatinine`. Create a new variable called `un_creat_ratio` that contains this calculation.
 ```{r}
- 
- 
+polar_bears %>% 
+
 ```
 
 7. (4 points) The authors of the study categorized bears as fasting if their `un_creat_ratio` was less than or equal to 10. Use `case_when()` to create a new variable called `fasting` that categorizes bears as fasting or not.
