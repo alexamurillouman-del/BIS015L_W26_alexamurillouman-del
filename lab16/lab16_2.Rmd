@@ -1,4 +1,5 @@
----
+
+ ---
 title: "Lab 16.2"
 author: "Bryshal Moore"
 date: "2026-02-26"
@@ -91,10 +92,10 @@ There are five main types of BLAST, each designed for a specific combination of 
    - **Accession Number** — a unique identifier for the database entry that matched your query. You can click on this to learn more about the sequence.
    
 7. Check the **Select All** box. Click on Download and select the **Alginment Descrptions CSV**. Download the results in CSV format. Using the command line move the file into your "data/blast_results" folder and rename the file to "genome01_blastn.csv".
-```{}
 
+```{r}
+read_csv("data/genome01_blastn.csv")
 ```
-
 
    
 Load the blast search results into R. 
@@ -124,7 +125,7 @@ Which hit had the highest e-value?**(include the description, taxid, e_value, an
 if (!requireNamespace("BiocManager", quietly = TRUE))
   install.packages("BiocManager")
 
-#BiocManager::install("Biostrings")
+BiocManager::install("Biostrings")
 ```
 
 
@@ -135,12 +136,12 @@ library(Biostrings)
 
 Lets take a look at a dna fasta file
 ```{r}
-
+dna_file <-readDNAStringSet("data/e.coli_genbank.fasta")
 ```
 
 Lets look at the head of the fasta file
 ```{r}
-
+head(dna_file)
 ```
 
 Lets take a look at a amino acid fasta file
