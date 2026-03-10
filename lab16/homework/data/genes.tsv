@@ -1,0 +1,10 @@
+Accession	Begin	End	Chromosome	Orientation	Name	Symbol	Gene ID	Gene Type	Transcripts accession	Transcript name	Protein accession	Protein name	Protein length	Locus tag
+NZ_CP178018.1	710	850		plus	50S ribosomal protein L34	rpmH		protein-coding			WP_002220736.1	50S ribosomal protein L34	46	ACLMFM_RS00005
+NZ_CP178018.1	869	1228		plus	ribonuclease P protein component	rnpA		protein-coding			WP_002228153.1	ribonuclease P protein component	119	ACLMFM_RS00010
+NZ_CP178018.1	1192	1449		plus	membrane protein insertion efficiency factor YidD	yidD		protein-coding			WP_002228756.1	membrane protein insertion efficiency factor YidD	85	ACLMFM_RS00015
+NZ_CP178018.1	1452	3092		plus	membrane protein insertase YidC	yidC		protein-coding			WP_002220739.1	membrane protein insertase YidC	546	ACLMFM_RS00020
+NZ_CP178018.1	3235	4599		plus	tRNA uridine-5-carboxymethylaminomethyl(34) synthesis GTPase MnmE	mnmE		protein-coding			WP_002220740.1	tRNA uridine-5-carboxymethylaminomethyl(34) synthesis GTPase MnmE	454	ACLMFM_RS00025
+NZ_CP178018.1	4785	5984		plus	enoyl-ACP reductase FabV	fabV		protein-coding			WP_002215588.1	enoyl-ACP reductase FabV	399	ACLMFM_RS00030
+NZ_CP178018.1	9781	10449		plus	6-phosphogluconate phosphatase	yieH		protein-coding			WP_002215575.1	6-phosphogluconate phosphatase	222	ACLMFM_RS00065
+NZ_CP178018.1	14202	14924		minus	phosphate signaling complex protein PhoU	phoU		protein-coding			WP_002215564.1	phosphate signaling complex protein PhoU	240	ACLMFM_RS00090
+NZ_CP178018.1	15237	16019		minus	IS21-like element IS100kyp family helper ATPase IstB	istB		protein-coding			WP_001317493.1	IS21-like element IS100kyp family helper ATPase IstB	260	ACLMFM_RS00100
