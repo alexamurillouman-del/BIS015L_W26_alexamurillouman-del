@@ -4,11 +4,11 @@ author: "Ale Murillo Umanzor"
 date: "3/10/26"
 output:
   html_document:
-    theme: spacelabn
+    theme: spacelab
     toc: no
 ---
 
-```{r setup, include=FALSE}
+```{r setup, include=FALSE}n
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
@@ -114,14 +114,14 @@ names(goi_01_blastn)
 ```{r}
 goi_01_blastn %>%
   arrange(e_value) %>%
-  slice_head(n = 1) %>%
   select(description,
          scientific_name,
          max_score,
          query_cover,
          e_value,
          per_ident,
-         accession)
+         accession) %>% 
+head(1)
 ```
 
 **7. Based on the blastx and blastn results, what do you think this gene is and what bacteria do you think it came from?**
@@ -141,10 +141,10 @@ goi_blastn_hit
 genes <- read_tsv("data/genes.tsv")
 ```
 ```{r}
+genes <- genes[!is.na(genes$Symbol), ]
 genes[1:5, c("Name", "Symbol")]
 ```
-Five annotated genes from Yersinia pestis include rpmH, rnpA, yidD, yidC, and mnmE. These genes help the bacterium make proteins and maintain its cell functions, which helps it survive and cause infection.
-
+Five annotated genes from Yersinia pestis include dnaA, dnaN, recF, gyrB, and yidA. These genes are involved in DNA replication, repair, and cell function, which help the bacterium grow and survive in its host.
 **10. Now that you have an idea of this bacteria's identity, what illness/disease do you think the patient has? What is the historical or public health significance of this disease? Based on the gene you identified, what role might this gene play in pathogenicity?**
 The patient likely has plague, caused by Yersinia pestis. This disease is historically significant because it caused the Black Death, one of the deadliest pandemics in history. The gene identified may help the bacterium survive in the host and contribute to its ability to cause infection.
 
