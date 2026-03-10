@@ -4,7 +4,7 @@ author: "Ale Murillo Umanzor"
 date: "3/09/26"
 output:
   html_document:
-    theme: spacelab
+    theme: spacelabn
     toc: no
 ---
 
@@ -81,7 +81,7 @@ goi_01_blastx %>%
   arrange(x6_43e_70) %>%
   slice_head(n = 10) %>%
   ggplot(aes(x = wp_025470931_1, y = x100_000)) +
-  geom_col(fill = "turquoise3") +
+  geom_col(fill = "blue") +
   coord_flip() +
   labs(
     title = "Percent Identity of Top 10 BLASTX Hits",
