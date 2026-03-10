@@ -1,7 +1,7 @@
 ---
 title: "Homework YY"
 author: "Ale Murillo Umanzor"
-date: "3/09/26"
+date: "3/10/26"
 output:
   html_document:
     theme: spacelabn
@@ -70,23 +70,29 @@ names(goi_01_blastx)
 **3.Display the top 10 blastx hits, based on e_value, for this blastx search? (Include the Scientific Name, Cluster Anscestor, Cluster Representative Sequence, Max Score, Query Cover, E value and Percent Identity)**
 ```{r}
 goi_01_blastx %>%
-  arrange(x6_43e_70) %>%
-  slice_head(n = 10)
+  arrange(e_value) %>%
+  slice_head(n = 10) %>%
+  select(cluster_ancestor,
+         representative_sequence,
+         max_score,
+         query_cover,
+         e_value,
+         per_ident)
 ```
- 
 
+ 
 **4. create a plot that shows the different in percent identity for each Scientific Name of the top 10 blastx hits. Make sure to label your axes and give your plot a title.**
 ```{r}
 goi_01_blastx %>%
-  arrange(x6_43e_70) %>%
+  arrange(e_value) %>%
   slice_head(n = 10) %>%
-  ggplot(aes(x = wp_025470931_1, y = x100_000)) +
-  geom_col(fill = "blue") +
+  ggplot(aes(x = reorder(representative_sequence, per_ident), y = per_ident)) +
+  geom_col(fill = "turquoise4", color = "black", width = 0.7) +
   coord_flip() +
   labs(
     title = "Percent Identity of Top 10 BLASTX Hits",
-    x = "Accession",
-    y = "Percent Identity"
+    x = "Representative Sequence",
+    y = "Percent Identity (%)"
   ) +
   theme_minimal()
 ```
@@ -106,11 +112,20 @@ names(goi_01_blastn)
 
 **6. What was the top blastn hit, based on e_value, for this blastn search? (Include the Cluster Ancestor, Cluster Representative Sequence, Max Score, Query Cover, E value, Percent Identity and Accession Link)**
 ```{r}
-head(goi_01_blastn, 1)
+goi_01_blastn %>%
+  arrange(e_value) %>%
+  slice_head(n = 1) %>%
+  select(description,
+         scientific_name,
+         max_score,
+         query_cover,
+         e_value,
+         per_ident,
+         accession)
 ```
 
 **7. Based on the blastx and blastn results, what do you think this gene is and what bacteria do you think it came from?**
-Based on the blastx and blastn results, the sequence most likely came from Yersinia pestis. The gene appears to be associated with the pMT1 plasmid, which contains important virulence-related genes in this bacterium.
+The BLASTX and BLASTN results show that the sequence most closely matches genes from Yersinia pestis. The gene appears to be located on the pMT1 plasmid, which contains virulence-related genes important for infection and transmission in this bacterium.
 
 **8. For the top blastn hit, click on the accession link for this bacteria and download the coding sequences as a FASTA Protein file. Read the fasta file into R using the Biostrings package and store it in an object called `goi_blastn_hit`.**
 ```{r}
@@ -123,16 +138,15 @@ goi_blastn_hit
 
 **9. From the same organism, identify 5 other annotated genes? Do these genes suggest about the biology or virulence of this bacterium?** *Annotated genes can be found in the "CDS" section of the GenBank file. You can also find genes by going to summary page for the organism and looking at the "View annotated genes" section.*
 ```{r}
-annotated_genes <- tibble(
-  gene = c("caf1", "caf1M", "caf1A", "ymt", "lcrV")
-)
-
-annotated_genes
+genes <- read_tsv("data/genes.tsv")
 ```
-
+```{r}
+genes[1:5, c("Name", "Symbol")]
+```
+Five annotated genes from Yersinia pestis include rpmH, rnpA, yidD, yidC, and mnmE. These genes help the bacterium make proteins and maintain its cell functions, which helps it survive and cause infection.
 
 **10. Now that you have an idea of this bacteria's identity, what illness/disease do you think the patient has? What is the historical or public health significance of this disease? Based on the gene you identified, what role might this gene play in pathogenicity?**
-The patient most likely has plague, caused by the bacterium Yersinia pestis. This disease is historically significant because it caused the Black Death, one of the deadliest pandemics in human history. Based on the BLAST results, the identified gene likely plays a role in pathogenicity and virulence, helping the bacterium survive in the host and contribute to infection.
+The patient likely has plague, caused by Yersinia pestis. This disease is historically significant because it caused the Black Death, one of the deadliest pandemics in history. The gene identified may help the bacterium survive in the host and contribute to its ability to cause infection.
 
 ## Knit and Upload
 Please knit your work as an .html file and upload to Canvas. Homework is due before the start of the next lab. No late work is accepted. Make sure to use the formatting conventions of RMarkdown to make your report neat and clean! 
