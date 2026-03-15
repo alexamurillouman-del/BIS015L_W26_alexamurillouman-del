@@ -87,6 +87,9 @@ glimpse(polar_bears)
 polar_bears %>%
   naniar::miss_var_summary()
 ```
+```{r}
+naniar::vis_miss(polar_bears)
+```
 
 
 3. (6 points) Is sampling even for both sexes? Make a count the shows the number of males and females sampled by population and make a plot to visualize the counts.
@@ -101,7 +104,7 @@ polar_bears %>%
   geom_bar(position = "dodge")+
 labs(title= "Sapmpling of Male and Female Bears by Population",
      x="Population",
-     y="Sex")
+     y="Count")
 ```
 
 4. (6 points) How many bears were sampled in each year for both populations? Make a line plot(s) to visualize sampling by year for both populations. (hint: you will need to pull apart the date to get the year in its own column)
@@ -143,19 +146,20 @@ summarize(min_creatinine=min(creatinine, na.rm=T),
 
 6. (3 points) As explained above, the ratio of `urea_nitrogen` to `creatinine` is used as an index of fasting. To calculate the ratio, we need to multiply `urea_nitrogen` by 0.466, then divide by `creatinine`. Create a new variable called `un_creat_ratio` that contains this calculation.
 ```{r}
-un_creat_ratio<- polar_bears %>% 
+polar_bears<- polar_bears %>% 
   mutate(un_creat_ratio=(urea_nitrogen*0.466)/ creatinine)
 ```
 
 ```{r}
-un_creat_ratio %>%
+polar_bears %>%
   select(urea_nitrogen, creatinine, un_creat_ratio)
 ```
 
 7. (4 points) The authors of the study categorized bears as fasting if their `un_creat_ratio` was less than or equal to 10. Use `case_when()` to create a new variable called `fasting` that categorizes bears as fasting or not.
 ```{r}
 polar_bears <- polar_bears %>% 
-  mutate(fasting= if_else(un_creat_ratio<= 10, "fasting", "not fasting"))
+  mutate(fasting= case_when(un_creat_ratio<= 10 ~"fasting",
+                          un_creat_ratio > 10 ~  "not fasting"))
 ```
 
 ```{r}
